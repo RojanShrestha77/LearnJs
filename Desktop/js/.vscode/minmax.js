@@ -1,9 +1,22 @@
 function processArray(){
 
-    
-    const input = document.querySelector('.js-inputnum').value;
 
-    const numbers = input.split(",").map(Number);
+
+    
+    const input = document.querySelector('.js-inputnum');
+
+    const inputValue = input.value.trim();
+
+    if (inputValue === ""){
+        document.querySelector('.js-display').innerText = "min:null, max:null";
+        document.getElementById("output").innerText = "";
+        input.value = "";
+        
+        return;
+    
+    }
+
+    const numbers = inputValue.split(",").map(Number);
 
     if(numbers.some(isNaN)) {
         document.getElementById("output").innerText = "Please enter a valild number";
@@ -21,6 +34,8 @@ function processArray(){
     }
 
     document.querySelector('.js-display').innerText = "min=" + min + "max=" + max;
+
+    input.value = "";
 
     
 
