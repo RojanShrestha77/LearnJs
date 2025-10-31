@@ -1,10 +1,9 @@
-myArray= [10,20,30,30,40];
-console.log(myArray);
+const todoList=[];
 
-console.log(myArray[1]);
+function add() {
+    const nameElement = document.querySelector('.js-name');
+     todoList.push(nameElement.value);
+     console.log(todoList);
 
-myArray[0] = 12;
-console.log(myArray)
-
-myArray.splice(0, 1);
-console.log(myArray);
+    
+}
