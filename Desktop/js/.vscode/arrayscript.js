@@ -1,31 +1,35 @@
-const todoList=[];
-
-renderTodoList();
-
-function renderTodoList() {
-    let todoListHTML='';
-
-for (let i = 0; i< todoList.length; i++){
-    const todo = todoList[i];
-    const html = `<p>${todo}</p>`;
-    todoListHTML += html;
-}
-
-console.log(todoListHTML);
-
-document.querySelector('.js-todo-list').innerHTML = todoListHTML;
-
-}
-
+const todoList = [];
 
 function add() {
-    const nameElement = document.querySelector('.js-name');
-     todoList.push(nameElement.value);
-     console.log(todoList);
+  const nameInput = document.querySelector('.js-name');
+  const dueDateInput = document.querySelector('.js-date-select');
 
-     nameElement.value='';
+  todoList.push({
+    name: nameInput.value,
+    dueDate: dueDateInput.value
+  });
 
-     renderTodoList();
+  nameInput.value = '';
+  dueDateInput.value = '';
 
-    
+  renderTodoList();
+}
+
+function renderTodoList() {
+  let todoListHtml = "";
+
+  for (let i = 0; i < todoList.length; i++) {
+    const todoObject = todoList[i];
+    const name = todoObject.name;
+    const dueDate = todoObject.dueDate;
+
+    const html = `
+      <p>${name} ${dueDate}
+        <button onclick="todoList.splice(${i}, 1); renderTodoList();">Delete</button>
+      </p>
+    `;
+    todoListHtml += html;
+  }
+
+  document.querySelector('.js-todo-list').innerHTML = todoListHtml;
 }
