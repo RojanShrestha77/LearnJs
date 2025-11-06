@@ -75,3 +75,68 @@ console.log(person1.address?.continent?.name ?? "No Name") //No Name
 console.log(person1.address?.continent?.name?.coordinates ?? [0,0]) //[0,0]
 console.log(person1.gender.type?? "Not specified") //?
 console.log(person1.address?.country ?? "Unknown") //?
+
+//Iterator functions
+//forEach, map, filter, reduce
+arr1.forEach(
+    (element, index) => {
+        console.log(`forEach Index: ${index}, Element: ${element}`)
+    }
+)
+//callback 3 args: element, index, array
+arr1.forEach(elem => console.log(elem))
+//forEach no return value
+
+const mappedArr1 = arr1.map(
+    (element, index) => {
+        return element * 2 + index
+    }
+)
+
+console.log("Mapped Array:", mappedArr1)
+const mappedArr2 = arr1.map(elem => elem * elem)
+//map return the new array with the same length, transformed element
+
+//filter
+const filteredArr = arr1.length(
+    (element) => {
+        return element > 20
+    }
+)
+
+console.log("filtered Array", filteredArr)
+console.log(arr1,filter(elem => elem%2 === 0 ))
+
+//filter returns new array with elements that satisfy condition <= length
+//reduce
+const sumOfArr1 = arr1.reduce(
+    (accumulator, currentvalue) => accumulator + currentvalue,
+    0 // intial value of accumulator
+
+
+)
+
+//accumulator is carried over access iterations
+console.log("Sum", sumOfArr1)
+//return single aggregated value
+
+const cart = [
+    {name: "Milk", category: "grocery",price:2.5,qty:2, inStock: true},
+    {name: "Shampoo", category:"beauty",price:1.8,qty:3, inStock:false},
+    {name: "Egg", category:"grocery", price:5.8,qty:1, inStock:true}
+
+];
+
+const inStockProducts = cart.filter(item => item.inStock == true
+    && item.category === "grocery"
+)
+
+const mappedCart = inStockProducts.map(item => ({
+    name:item.name,
+    qty:item.qty,
+    LineTotal: item.price * item.qty
+}))
+
+const grandTotal = mappedCart.reduce((acc, item) => acc + item.LineTotal, 0)
+
+console.log(inStockProducts)
