@@ -1,0 +1,93 @@
+/* calculator.css */
+
+/* Center the calculator on the page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Calculator container */
+#calculator {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 260px;
+}
+
+/* Display input */
+#display {
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #8e2f2f;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Keys container */
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Buttons */
+#keys button {
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Hover effect */
+#keys button:hover {
+    background-color: #d0d0d0;
+    transform: scale(1.05);
+}
+
+/* Operator buttons */
+#keys button:nth-child(1),
+#keys button:nth-child(5),
+#keys button:nth-child(9),
+#keys button:nth-child(13) {
+    background-color: #ff9500;
+    color: #fff;
+}
+
+#keys button:nth-child(1):hover,
+#keys button:nth-child(5):hover,
+#keys button:nth-child(9):hover,
+#keys button:nth-child(13):hover {
+    background-color: #e08500;
+}
+
+/* Equal button */
+#keys button:nth-child(15) {
+    background-color: #34c759;
+    color: #fff;
+}
+
+#keys button:nth-child(15):hover {
+    background-color: #28a745;
+}
+
+/* Clear button */
+#keys button:nth-child(16) {
+    background-color: #ff3b30;
+    color: #fff;
+}
+
+#keys button:nth-child(16):hover {
+    background-color: #e02b20;
+}
