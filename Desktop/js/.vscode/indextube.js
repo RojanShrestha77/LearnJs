@@ -1,43 +1,57 @@
-//inheritance = allows a new class to import properties and methods from an existing class (parent -> clahild)
-//helps  with the code reusability
+class Person{
 
-class Animal {
-    alive = true;
+    constructor(firstName, lastName, age){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
 
-    eat(){
-        console.log(`This ${this.name} is eating`);
+    set firstName(newFirstName){
+        if(typeof newFirstName === "string" && newFirstName.length > 0){
+            this._firstName = newFirstName;
+        } else {
+            console.error("Else enter the valid name");
+        }
+    }
+
+    set lastName(newLastName){
+        if(typeof newLastName === "string" && newLastName.length > 0){
+            this._lastName = newLastName;
+        } else {
+            console.error("Else enter the valid name");
+        }
+    }
+
+    set age(newAge){
+        if(typeof newAge === "number" && newAge >= 0){
+            this._age = newAge;
+        } else {
+            console.error("Please enter the valid age");
+        }
+    }
+
+    get firstName(){
+        return this._firstName;
+    }
+
+    get lastName(){
+        return this._lastName;
+    }
+
+    get fullName(){
+        return this._firstName + "" + this._lastName;
+    }
+
+    get age(){
+        return this._age;
+    }
 
     
-    }
-    sleep(){
-        console.log(`This ${this.name} is sleeping`);
-    }
-    read(){
-        console.log(`This ${this.name} is reading`);
-    }
 }
 
-class Rabbit extends Animal {
-    name = "Rabbit"
-}
+const person = new Person("Rojan", "Shrestha", 20);
 
-class Mouse extends Animal {
-    name = "Mouse"
-}
-
-class Hawk extends Animal {
-    name = "Hawk"
-}
-
-class Tiger extends Animal {
-    name = "tiger"
-}
-
-const rabbit = new Rabbit();
-const mouse =  new Mouse();
-const hawk = new Hawk();
-const tiger = new Tiger();
-
-hawk.sleep();
-mouse.eat();
-rabbit.read();
+console.log(person.firstName);
+console.log(person.lastName);
+console.log(person.fullName);
+console.log(person.age);
