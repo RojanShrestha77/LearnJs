@@ -1,3 +1,11 @@
+// Async/Await:
+// Async = makes a function return a promise
+// Await = makes a async function wait for a promise
+
+//  Allows you write asynchronous code in a synchronous manner
+//  Async doesnt have resolve or reject parameters
+// Everything after Await is placed in an event queu
+
 // Promise - An object that manages asynchronous operations.
 // wrap a promise object arount{asrychronous code}
 //  "I promise to return a value"
@@ -9,7 +17,7 @@ function walkDog() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
 
-            const dogwalked = true;
+            const dogwalked = false;
 
             if(dogwalked){
                 resolve("I am walking my dog🐶");
@@ -26,7 +34,7 @@ function cleanKitchen() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
 
-            const cleanedkitchen = false;
+            const cleanedkitchen = true;
             
             if(cleanedkitchen){
                 resolve("I am cleaning the kitchen");
@@ -54,8 +62,27 @@ function takeOutTrash() {
         }, 4000);
     });
 }
+async function doChores(){
 
-walkDog().then(value => {console.log(value); return cleanKitchen()})
-         .then(value => {console.log(value); return takeOutTrash()})
-         .then(value => {console.log(value); console.log("you have reached the end of the program")})
-         .catch(error => console.error(error));
+    try{
+        const walkDogResult = await walkDog();
+        console.log(walkDogResult);
+
+        const cleanKitchenResult = await cleanKitchen();
+        console.log(cleanKitchenResult);
+        
+        const takeOutTrashResult = await takeOutTrash();
+        console.log(takeOutTrashResult);
+
+        console.log("You have scuccesfully reached the end of an program")
+
+    } catch(error) {
+        console.error(error);
+    }
+    
+
+
+
+}
+
+doChores();
