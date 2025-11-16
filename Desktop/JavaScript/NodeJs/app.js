@@ -1,7 +1,26 @@
-const {readFileSync, writeFileSync } = require('fs') 
+const express = require('express')
 
-const first = readFileSync('./content/first.txt','utf8')
+const app = express()
 
-writeFileSync('./content/result-sync.txt',`Here is the result ${first}`)
+//setup static and middleware
+app.use(express.static('./public'))
 
-console.log(first)
+//resolve = combines paths and converts to an absolute path
+// join = it also joins paths safely without converting to absolute
+// app.get('/',(req, res) => {
+//     res.sendFile(path.resolve(__dirname,'./navabar-app/index.html'))
+
+// })
+// adding to static assets 
+// SSR
+
+
+app.all('*', (req,res) => {
+    res.status(404).send("Resource Not Found")
+
+})
+
+app.listen(5000,() => {
+    console.log("Server is listening on port 5000")
+})
+
