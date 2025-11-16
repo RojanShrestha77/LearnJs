@@ -19,6 +19,10 @@ const names = require('./4-name')
 const sayHi = require('./5-utils')
 const data = require('./6-alternative-flavour')
 
+//if the module has function and we invoke it that code will run 
+// without assigning importing or calling/invoke it
+require('./7-mind-grenade')
+
 
 console.log(data.singlePerson.name)
 sayHi(names.bimbika)
