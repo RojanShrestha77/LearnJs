@@ -1,5 +1,9 @@
+//patch = used to update the specific fields of a resource
+// Put = update the full field or change it
+
 import express from 'express';
 import bodyParser from 'body-parser';
+
 
 const app = express();
 const port = 3000;

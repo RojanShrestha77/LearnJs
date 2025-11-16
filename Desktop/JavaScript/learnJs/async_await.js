@@ -6,6 +6,7 @@
 //  Async doesnt have resolve or reject parameters
 // Everything after Await is placed in an event queu
 
+// A promise in Javascript is an object that represent a value that might not be available yet , but will be available at some point in the future
 // Promise - An object that manages asynchronous operations.
 // wrap a promise object arount{asrychronous code}
 //  "I promise to return a value"
