@@ -34,12 +34,14 @@ app.get('/api/products/:productID/reviews/:reviewID',(req, res) => {
     console.log(req.params)
     res.send('Hello world')
 })
-// to get single product
-// app.get('/api/products/1', (req, res) => {
-//     const singleProducts = products.find((product) => product.id === 1)
 
-//     res.json(singleProducts)
-// })
+app.get('/api/v1/query',(req, res) => {
+    console.log(req.query);
+    res.send('hello world')
+})
+
+
+
 app.listen(5000, () => {
     console.log("Server is running in the port 5000")
 })
