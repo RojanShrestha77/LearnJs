@@ -35,9 +35,33 @@ app.get('/api/products/:productID/reviews/:reviewID',(req, res) => {
     res.send('Hello world')
 })
 
+// req.query sends the data to the backend received from the url
 app.get('/api/v1/query',(req, res) => {
-    console.log(req.query);
-    res.send('hello world')
+    const { search, limit} = req.query 
+    let sortedProducts = [...products]
+
+    if(search){
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startsWith(search)
+        })
+    }
+    // if(limit) if the limit exist
+    if (limit){
+        sortedProducts = sortedProducts.slice(0, Number(limit))
+    } 
+    if (sortedProducts.length < 1){
+        res.status(200).send("no products matched  ur search")
+    }
+    // req.query receives data from the client (browser or frontend).
+    // The client sends it in the URL query string, e.g.:
+    // You take the full products array (from the backend)
+    // Then you filter or limit it based on what the client requested (req.query)
+    // This sends the filtered/limited products back to the client.
+    // res is the output from the backend, going to the frontend.
+    res.status(200).json(sortedProducts)
+
+
+    // res.send('hello world')
 })
 
 
