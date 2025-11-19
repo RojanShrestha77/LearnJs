@@ -65,7 +65,3 @@ app.get('/api/v1/query',(req, res) => {
 })
 
 
-
-app.listen(5000, () => {
-    console.log("Server is running in the port 5000")
-})
