@@ -1,23 +1,12 @@
-import {Request, Response} from 'express';
-import {z} from 'zod';
-
-
-export const BookSchema = z.object ({
-    id: z.string().min(1, { message: "Id is required"}),
-    title: z.string().min(1, {message: "Title is required"}),
-    date: z.string().optional(),
-});
-export type Book = z.infer<typeof BookSchema>
-
-// Dto = dATA tRANSFER oBJECT
-export const CreateBookDTO = BookSchema.pick({id: true, title: true});
-export type createBookDTO = z.infer<typeof CreateBookDTO>;
 
 // export type Book = {
 //     id: String,
 //     title: String,
 //     date: String
 // }
+import { Request, Response } from "express";
+import { CreateBookDTO } from "../dtos/books.dto";
+import { Book } from "../types/books.type";
 
 export const books: Book[] = [
         {id: '1', title:'1984', date: '2020'},
@@ -27,15 +16,19 @@ export const books: Book[] = [
 export class BookController {
 
     createBook = (req: Request, res: Response) => {
+        const validation = CreateBookDTO.safeParse(req.body);
+        if(!validation.success){
+            return res.status(400).json({error:validation.error})
+        }
         const{id, title} = req.body; //destructure
         // const id = req.body.id; const title req = body.title
-        if(!id) {
-            return res.status(400).json({message: "Id is required"});
-        }
-        if(!title){
-            return res.status(400).json({message: 'title is reuqired'});
+        // if(!id) {
+        //     return res.status(400).json({message: "Id is required"});
+        // }
+        // if(!title){
+        //     return res.status(400).json({message: 'title is reuqired'});
 
-        }
+        // }
         const exist = books.find(book => book.id === id);
         if(!exist){
             return res.status(400).json({message: `${id} already exist`})
